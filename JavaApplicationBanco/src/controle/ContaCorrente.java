@@ -25,7 +25,14 @@ public class ContaCorrente {
         saldo+= newValor;
     }
     
-//    public void transferir()
-       
+    public void transferir(ContaCorrente transf, int valor) throws Exception{
+        if (valor <= 0) {
+            throw new Exception("Não é possível transferir um valor negativo ou igual a zero.");
+        }
+        if ((saldo + chequeEspecial) < valor) {
+            throw new Exception("Saldo insuficiente para realizar a transferência.");
+        }
+        this.sacar(valor);
+        transf.depositar(valor);
+    }
 }
-
